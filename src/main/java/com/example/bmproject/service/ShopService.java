@@ -3,7 +3,6 @@ package com.example.bmproject.service;
 import com.example.bmproject.entity.*;
 import com.example.bmproject.repository.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -28,8 +27,6 @@ public class ShopService {
     private final OrderRiderLogRepository orderRiderLogRepository;
     private final OrderRiderRepository orderRiderRepository;
     private final RiderRepository riderRepository;
-
-    private final JPAQueryFactory queryFactory;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 

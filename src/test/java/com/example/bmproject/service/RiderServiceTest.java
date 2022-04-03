@@ -1,20 +1,28 @@
 package com.example.bmproject.service;
 
-import com.example.bmproject.entity.ShopOrderStatusEntity;
-import com.example.bmproject.repository.ShopOrderStatusRepository;
+import com.example.bmproject.repository.OrderRiderLogRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+@DataJpaTest
+@DependsOn("flyway")
 public class RiderServiceTest {
 
-    @Autowired
-    private RiderService riderService;
-    private ShopOrderStatusRepository ShopOrderStatusRepository;
+    RiderService riderService;
 
-    @Test
-    public void test1() throws Exception {
-        ShopOrderStatusEntity ShopOrderStatusEntity = ShopOrderStatusRepository.orderStatusInfo("ORD_A01");
-        ShopOrderStatusEntity.setorderStatus("PICKUP");
-        ShopOrderStatusRepository.save(ShopOrderStatusEntity);
-    }
+    private Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
+
+    @Autowired private OrderRiderLogRepository orderRiderLogRepository;
+
+//    @Test
+//    public void test1() throws Exception {
+//        Object obj = riderService.riderCheck("ORD_A01");
+//        logger.debug(obj.toString());
+//    }
 }
