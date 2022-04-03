@@ -1,9 +1,7 @@
 package com.example.bmproject.controller;
 
-import com.example.bmproject.entity.OrderRiderLogEntity;
 import com.example.bmproject.entity.ShopMenuEntity;
 import com.example.bmproject.service.ShopService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

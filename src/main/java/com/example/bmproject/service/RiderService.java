@@ -2,7 +2,6 @@ package com.example.bmproject.service;
 
 import com.example.bmproject.entity.OrderRiderEntity;
 import com.example.bmproject.entity.RiderEntity;
-import com.example.bmproject.entity.ShopMenuEntity;
 import com.example.bmproject.entity.ShopOrderStatusEntity;
 import com.example.bmproject.repository.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
