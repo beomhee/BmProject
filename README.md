@@ -2,13 +2,21 @@
 ## 주문 시스템 프로세스
 ###	주문 접수 (/order)
 1. 주문 확인 (init)
-2. 주문 내역 저장 (bm_order)
-3. 주문 판매 수량 업데이트 (bm_menu:[today_remain])
-4. 주문 상태 저장 (bm_order_state:[order_state:RECEIPT])
+2. 주문 내역 저장 
+   * DB Table : bm_order
+3. 주문 판매 수량 업데이트 
+   * DB Table : bm_menu
+     * Field : today_remain
+4. 주문 상태 저장 
+   * DB Table : bm_order_state
+     * Field : order_state => RECEIPT
 5. 라이더 시스템 호출 (/rider)
 ### 주문 상태 업데이트 (/orderStateUpdate)
-1. 주문 상태 업데이트 (bm_order_state:[order_state:PICKUP])
-2. 주문 배달 로그 저장 (bm_order_rider_log)
+1. 주문 상태 업데이트
+   * DB Table : bm_order_state
+     * Field : order_state => PICKUP
+2. 주문 배달 로그 저장 
+   * DB Table : bm_order_rider_log
 ### 주문조회 (/orderCheck)
 * 주문 상태 조회 
   * 배달완료에서는 남은 거리가 표시되지 않음.
@@ -87,9 +95,12 @@
 ## 라이더 시스템
 ### 라이더 배정 (/rider)
 1. 라이더 확인(init)
-2. 라이더 배정 (bm_order_rider)
+2. 라이더 배정 
+   * DB Table : bm_order_rider
 3. 상점 시스템 호출 (/orderStateUpdate)
-4. 상점 시스템 호출이 성공하면 라이더 상태 업데이트 (bm_rider:[rider_run:Y])
+4. 상점 시스템 호출이 성공하면 라이더 상태 업데이트
+   * DB Table : bm_rider
+     * Field : rider_run => Y
 ### 배달조회 (/riderCheck)
 * 배달 상태 조회
   * 배달완료에서는 기대시간이 표시되지 않음
@@ -135,10 +146,18 @@
   * 상점 시스템 호출 (/orderLog)
     * 픽업된 주문을 검색
     * 라이드 스피드 고려하여 남은 거리를 확인
-      * 남은 거리가 0인 경우 배달완료 처리(bm_order_state:[order_state:COMPLETE], bm_order_rider:[complete_dt:배달완료시간], bm_rider:[rider_run:N])
-        * 접수된 주문 확인
+      * 남은 거리가 0인 경우 배달완료 처리
+        * DB Table : bm_order_state
+          * Field : order_state => COMPLETE
+        * DB Table : bm_order_rider
+          * Field : complete_dt => 배달완료시간
+        * DB Table : bm_rider
+          * Field : rider_run => N
+        * 접수된 주문 확인         
         * 라이더 시스템 호출 (/rider)
-      * 아직 배달되지 않은 경우 남은 거리업데이트 (bm_order_rider_log:[remain_distance:남은거리])
+      * 아직 배달되지 않은 경우 남은 거리업데이트 
+        * DB Table : bm_order_rider_log
+          * Field : remain_distance => 남은거리
 
 ## 주문 취소 조건
 * 단일 메뉴 주문 개수가 5개를 초과하는 경우
@@ -190,7 +209,7 @@ INFO  2022-04-03 21:18:06[http-nio-127.0.0.1-8080-exec-6] [ShopService.java - up
 * curl -X POST -H "Content-Type: application/json" -d "{\"orderNo\": \"ORD_A01\"}" http://localhost:8080/riderCheck 
 
 ## 실행방법
-* d:\java\jdk-18\bin\java.exe -jar BmProject-0.0.1-SNAPSHOT.jar
+* \java\jdk-18\bin\java.exe -jar BmProject-0.0.1-SNAPSHOT.jar
 
 ## DB 스키마
 ![img.png](img.png)
