@@ -30,6 +30,23 @@ class RiderControllerTest {
     private RiderService riderService;
 
     @Test
+    @DisplayName("라이더 배차 테스트")
+    void rider() throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        map.put("orderNo", "ORD_A01");
+        map.put("shopNo", "SHOP_01");
+        map.put("requestDt", "20220404120000");
+
+        String param = objectMapper.writeValueAsString(map);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/rider/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(param))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(print());
+    }
+    
+    @Test
     @DisplayName("배달 조회 테스트")
     void riderCheck() throws Exception {
         Map<String, Object> map = new HashMap<>();
