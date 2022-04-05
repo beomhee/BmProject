@@ -3,6 +3,7 @@ package com.example.bmproject.controller;
 import com.example.bmproject.entity.RiderEntity;
 import com.example.bmproject.entity.ShopOrderStatusEntity;
 import com.example.bmproject.service.RiderService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ public class RiderController {
     private Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
     private final RiderService riderService;
 
+    @ApiOperation(value = "배달등록", notes = "주문시스템에서 자동으로 호출되는 API로 주문이 완료되었을 때 호출된다.")
     @RequestMapping(value = "/rider", method = RequestMethod.POST)
     public void init(@RequestBody HashMap<String, Object> map) {
         logger.debug(map.toString());
@@ -46,6 +48,7 @@ public class RiderController {
         }
     }
 
+    @ApiOperation(value = "배달조회", notes = "주문번호로 현재 배달 상태를 조회한다.")
     @RequestMapping(value = "/riderCheck", method = RequestMethod.POST)
     public Object riderCheck(@RequestBody HashMap<String, Object> map) {
         Object ret = riderService.riderCheck(map.get("orderNo").toString());

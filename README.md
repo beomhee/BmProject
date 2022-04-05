@@ -185,6 +185,28 @@ INFO  2022-04-03 21:18:06[http-nio-127.0.0.1-8080-exec-6] [ShopService.java - up
   * **[250]** : 배달을 하고 있는 경우 남은 거리가 출력됨
   * **[배달완료]** : 배달이 완료되는 경우 배달완료가 출력됨
 
+## 소스 컴파일 및 실행
+### BUILD
+* 소스코드 위치로 이동 후 아래 명령으로 build
+* d:\BmProject\mvnw package
+### 실행방법
+* target 디렉토리로 이동 후 아래 명령 실행
+* d:\java\jdk-18\bin\java.exe -jar BmProject-0.0.1-SNAPSHOT.jar
+
+## API 문서
+* http://localhost:8080/swagger-ui.html
+  * rider-controller
+    * /rider 배달등록 (주문시스템에서 자동호출되는 API)
+    * /riderCheck 배달조회
+      * ex) {"orderNo": "ORD_A01"}
+  * shop-controller
+    * /order  주문
+      * ex) {"orderNo": "ORD_A02","shopNo": "SHOP_01","distance" : 400,"menu": [{"menuNo": "MENU_01","quantity": 5}]}
+    * /orderCheck 주문조회
+      * ex) {"orderNo": "ORD_A01"}
+    * /orderLog 배달로그 (스케줄러에서 자동으로 호출)
+    * /orderStatusUpdate 주문상태업데이트 (배달로그에서 자동으로 호출)
+
 ## 주문 (http://localhost:8080/order/)
 ### 정상주문
 * curl -X POST -H "Content-Type: application/json" -d "{\"orderNo\": \"ORD_A01\",\"shopNo\": \"SHOP_01\",\"distance\" : 300,\"menus\": [{\"menuNo\": \"MENU_01\",\"quantity\": 1},{\"menuNo\": \"MENU_02\",\"quantity\": 2}]}" http://localhost:8080/order/
@@ -208,14 +230,6 @@ INFO  2022-04-03 21:18:06[http-nio-127.0.0.1-8080-exec-6] [ShopService.java - up
 
 ### 배달조회 (http://localhost:8080/riderCheck)
 * curl -X POST -H "Content-Type: application/json" -d "{\"orderNo\": \"ORD_A01\"}" http://localhost:8080/riderCheck 
-
-## 소스 컴파일 및 실행
-### BUILD
-* 소스코드 위치로 이동 후 아래 명령으로 build
-* d:\BmProject\mvnw package
-### 실행방법
-* target 디렉토리로 이동 후 아래 명령 실행
-* d:\java\jdk-18\bin\java.exe -jar BmProject-0.0.1-SNAPSHOT.jar
 
 ## DB 스키마
 ![img.png](img.png)

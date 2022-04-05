@@ -2,6 +2,7 @@ package com.example.bmproject.controller;
 
 import com.example.bmproject.entity.ShopMenuEntity;
 import com.example.bmproject.service.ShopService;
+import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,8 @@ public class ShopController {
         return formatter.format(today);
     }
 
+    @ApiOperation(value = "주문",
+            notes = "배달 주문을 요청한다.\n주문이 접수되면 라이더 시스템을 호출하여 배달을 등록한다.")
     @RequestMapping(value = "/order", method = RequestMethod.POST)
     public Object init(@RequestBody HashMap<String, Object> map) {
         String currentTime = getCurrentDateTime();
@@ -132,6 +135,8 @@ public class ShopController {
     }
 
     // 주문 상태 업데이트
+    @ApiOperation(value = "주문 상태 업데이트",
+            notes = "parameter로 입력받은 상태값으로 주문 상태를 업데이트한다.")
     @RequestMapping(value = "/orderStatusUpdate", method = RequestMethod.POST)
     public Object updateOrderStatus(@RequestBody HashMap<String, Object> map) {
         String orderNo = map.get("orderNo").toString();
@@ -154,11 +159,13 @@ public class ShopController {
         return output;
     }
 
+    @ApiOperation(value = "배달로그", notes = "스케줄러로 자동으로 호출된다.")
     @RequestMapping(value = "/orderLog", method = RequestMethod.POST)
     public void orderLog(@RequestBody HashMap<String, Object> map) {
         shopService.updateOrderLog(map.get("currentDt").toString());
     }
 
+    @ApiOperation(value = "주문조회", notes = "주문번호로 주문 상태를 조회한다.")
     @RequestMapping(value = "/orderCheck", method = RequestMethod.POST)
     public Object orderCheck(@RequestBody HashMap<String, Object> map) {
         List<Object> ret = shopService.orderCheck(map.get("orderNo").toString());
