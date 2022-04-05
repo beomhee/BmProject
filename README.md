@@ -191,7 +191,7 @@ INFO  2022-04-03 21:18:06[http-nio-127.0.0.1-8080-exec-6] [ShopService.java - up
 * d:\BmProject\mvnw package
 ### 실행방법
 * target 디렉토리로 이동 후 아래 명령 실행
-* d:\java\jdk-18\bin\java.exe -jar BmProject-0.0.1-SNAPSHOT.jar
+* java.exe -jar BmProject-0.0.1-SNAPSHOT.jar
 
 ## API 문서
 * http://localhost:8080/swagger-ui.html

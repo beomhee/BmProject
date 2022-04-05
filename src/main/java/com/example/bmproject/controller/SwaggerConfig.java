@@ -28,7 +28,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("[프로젝트과제] 시니어 서버 개발자 대상")
+                .title("[프로젝트과제] 시니어 서버 개발자")
                 .description("배달의민족 시스템 미니 버전")
                 .version("1.0.0")
                 .build();
