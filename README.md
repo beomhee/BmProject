@@ -208,8 +208,13 @@ INFO  2022-04-03 21:18:06[http-nio-127.0.0.1-8080-exec-6] [ShopService.java - up
 ### 배달조회
 * curl -X POST -H "Content-Type: application/json" -d "{\"orderNo\": \"ORD_A01\"}" http://localhost:8080/riderCheck 
 
-## 실행방법
-* \java\jdk-18\bin\java.exe -jar BmProject-0.0.1-SNAPSHOT.jar
+## 소스 컴파일 및 실행
+### BUILD
+* 소스코드 위치로 이동 후 아래 명령으로 build
+* d:\BmProject\mvnw package
+### 실행방법
+* target 디렉토리로 이동 후 아래 명령 실행
+* d:\java\jdk-18\bin\java.exe -jar BmProject-0.0.1-SNAPSHOT.jar
 
 ## DB 스키마
 ![img.png](img.png)
