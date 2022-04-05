@@ -185,7 +185,7 @@ INFO  2022-04-03 21:18:06[http-nio-127.0.0.1-8080-exec-6] [ShopService.java - up
   * **[250]** : 배달을 하고 있는 경우 남은 거리가 출력됨
   * **[배달완료]** : 배달이 완료되는 경우 배달완료가 출력됨
 
-## 주문 방법
+## 주문 (http://localhost:8080/order/)
 ### 정상주문
 * curl -X POST -H "Content-Type: application/json" -d "{\"orderNo\": \"ORD_A01\",\"shopNo\": \"SHOP_01\",\"distance\" : 300,\"menus\": [{\"menuNo\": \"MENU_01\",\"quantity\": 1},{\"menuNo\": \"MENU_02\",\"quantity\": 2}]}" http://localhost:8080/order/
 * curl -X POST -H "Content-Type: application/json" -d "{\"orderNo\": \"ORD_A02\",\"shopNo\": \"SHOP_01\",\"distance\" : 400,\"menu\": [{\"menuNo\": \"MENU_01\",\"quantity\": 5}]}" http://localhost:8080/order/
@@ -202,10 +202,11 @@ INFO  2022-04-03 21:18:06[http-nio-127.0.0.1-8080-exec-6] [ShopService.java - up
 * 배달 거리 초과
   * curl -X POST -H "Content-Type: application/json" -d "{\"orderNo\": \"ORD_A13\",\"shopNo\": \"SHOP_01\",\"distance\" : 650,\"menu\": [{\"menuNo\": \"MENU_05\",\"quantity\": 2}]}" http://localhost:8080/order/
 
-### 주문조회
+## 조회
+### 주문조회 (http://localhost:8080/orderCheck)
 * curl -X POST -H "Content-Type: application/json" -d "{\"orderNo\": \"ORD_A01\"}" http://localhost:8080/orderCheck
 
-### 배달조회
+### 배달조회 (http://localhost:8080/riderCheck)
 * curl -X POST -H "Content-Type: application/json" -d "{\"orderNo\": \"ORD_A01\"}" http://localhost:8080/riderCheck 
 
 ## 소스 컴파일 및 실행
